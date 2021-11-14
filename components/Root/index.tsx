@@ -21,7 +21,8 @@ export default function Root({ stocks }) {
         phone: "(469) 534-2142",
         password: "password",
         name: "test",
-      }*/} watchListData={watchListStocks.map(ticker => stocks[ticker])} />
+      }*/} watchListData={watchListStocks.map(ticker => stocks[ticker])}
+      curStock={curStock} setCurStockCallback={setCurStock} />
       <MainContainer data={stocks[curStock]} />
       <GlobalContainer />
       {!user && <Login setUser={setUser}/>}
