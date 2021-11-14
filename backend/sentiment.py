@@ -4,18 +4,21 @@ import nest_asyncio
 import json
 import heapq
 
+#sentiment analysis
 analyzer = SentimentIntensityAnalyzer()
-#twint stuff. Twitter scraper.
 nest_asyncio.apply()
 companies = ["Walmart", "Amazon", "Apple", "CVS Health", "UnitedHealth Group", "Berkshire Hathaway", "McKesson", "AmerisourceBergen","Alphabet","Exxon Mobil"]
 
+
+tuple_list = []
+#parse companies tweets
 for i in companies:
     x = twint.Config()
     x.Search = i
     x.Lang = "en"
     x.Since='2021-10-14'
     x.Until='2021-11-14'
-    x.Limit=2000
+    x.Limit=20
     x.Store_json = True
     x.Output = i+".json"
     twint.run.Search(x)
@@ -32,5 +35,11 @@ for i in companies:
             positive+=1
         else: 
             negative+=1
-        
+
+    #how trending is sorted
+    tuple = (positive+negative, abs(positive-negative),positive,negative,x.Output)
+    tuple_list.append(tuple)  
 a.close()
+
+tuple_list.sort()
+print(tuple_list)
