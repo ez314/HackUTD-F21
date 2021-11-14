@@ -55,7 +55,7 @@ export default function Chart(props: ChartProps) {
           <stop offset="95%" stopColor={"#357ae4"} stopOpacity={0}/>
         </linearGradient>
       </defs>
-      <XAxis dataKey="timestamp" type="category"/>
+      <XAxis dataKey="timestamp" scale="time" type="number" domain={[1636900200000, 1636923600000]} padding={{ right: 70 }} hide={true} />
       <YAxis domain={['auto', 'auto']}/>
       <CartesianGrid strokeDasharray="3 3"/>
       <Tooltip content={<CustomToolTip />}/>
