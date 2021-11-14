@@ -8,7 +8,6 @@ import Profile from "../Profile";
 import { getUser, UserData } from "../../lib/user";
 
 export default function Root({ stocks }) {
-  const stockList = ['TSLA', 'GOOG', 'AAPL', 'MSFT', 'UBER', 'PLTR', 'NVDA', 'LCID', 'HOOD', 'JNJ', 'INTC', 'GME'].sort();
   const [user, setUser] = useState<UserData>(undefined);
   const [profile, setProfileView] = useState(false);
   const [watchListStocks, setWatchListStocks] = useState(['TSLA']);  
@@ -62,7 +61,7 @@ export default function Root({ stocks }) {
           console.log(err);
         });
       }} />
-      <GlobalContainer setSelected={setCurStock} curStockCallback={callback} />
+      <GlobalContainer setSelected={setCurStock} curStockCallback={callback} stocks={stocks} />
       {!user && <Login setUser={setUser} />}
       {profile && <Profile setUser={setUser} setProfile={setProfileView} />}
     </AppFrame>
