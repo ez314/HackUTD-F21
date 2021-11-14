@@ -2,7 +2,7 @@
   outline: none;
 }
 #loginphone, #loginpassword {
-  --color: #ffffff;
+  --color: #F5F5F5;
   box-shadow: 5px 5px 7px -3px var(--color);
   transition: box-shadow 0.25s;
 }

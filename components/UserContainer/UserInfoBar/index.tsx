@@ -10,7 +10,7 @@ interface UserInfoBarProps {
 
 export default function UserInfoBar({ user }: UserInfoBarProps) {
   return (
-    <div id="userinfobar" className="flex flex-row items-center m-0 p-0 w-full h-16 bg-blue-400">
+    <div id="userinfobar" className="flex flex-row items-center m-0 p-0 w-full h-16 bg-custom-gray-0">
       {user ? <div className="flex flex-row items-center">
         <ProfileIcon className="w-6 h-6 mx-3" />
         <div className="text-sm">{user.name}</div>
