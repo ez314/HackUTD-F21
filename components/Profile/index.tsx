@@ -52,22 +52,22 @@ function validatePassword() {
 export default function Profile({ setUser, setProfile }: ProfileProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  let user = getUser();
   return (
     <div id="profile" className="absolute flex items-center justify-center w-full h-full bg-custom-modal z-10">
       <div id="profileactual" className="relative flex flex-col items-center w-1/3 h-max p-3 bg-custom-gray-0 rounded-xl text-white">
         <div className="text-3xl font-black mb-7">PROFILE</div>
         <div className="text-xl font-bold my-3">First Name</div>
-        <input id={styles.profilefirst} onChange={validateFirstName} className="w-1/2 bg-custom-gray-1 text-lg text-center rounded-lg"></input>
+        <input id={styles.profilefirst} onChange={validateFirstName} className="w-1/2 bg-custom-gray-1 text-lg text-center rounded-lg" placeholder={user.first_name}></input>
         <div className="text-xl font-bold my-3">Last Name</div>
-        <input id={styles.profilelast} onChange={validateLastName} className="w-1/2 bg-custom-gray-1 text-lg text-center rounded-lg"></input>
-        <div className="flex flex-row items-center justify-center my-10">
+        <input id={styles.profilelast} onChange={validateLastName} className="w-1/2 bg-custom-gray-1 text-lg text-center rounded-lg" placeholder={user.last_name}></input>
+        <div className="flex flex-row items-center justify-center mt-10">
           <div className="rounded-xl text-center bg-custom-blue w-24 p-3 m-4 cursor-pointer hover:brightness-125 transition" onClick={() => {
             setLoading(true);
             if (!validateFirstName() || !validateLastName()) {
               setLoading(false);
               return setError("Invalid profile data...");
             }
-            let user = getUser();
             fetch("/api/profile", {
               mode: 'cors',
               method: 'POST',
