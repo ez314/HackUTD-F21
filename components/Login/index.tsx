@@ -39,13 +39,13 @@ export default function Login({ setUser }: LoginProps) {
   const [error, setError] = useState("");
   return (
     <div id="login" className="absolute flex items-center justify-center w-full h-full bg-custom-modal z-10">
-      <div id="loginactual" className="relative flex flex-col items-center w-1/3 h-3/5 p-3 bg-custom-gray-0 rounded-xl text-white">
+      <div id="loginactual" className="relative flex flex-col items-center w-1/3 h-max p-3 bg-custom-gray-0 rounded-xl text-white">
         <div className="text-3xl font-black mb-7">LOGIN</div>
         <div className="text-xl font-bold my-3">Phone Number</div>
         <input id={styles.loginphone} onChange={validatePhone} className="w-1/2 bg-custom-gray-1 text-lg text-center rounded-lg"></input>
         <div className="text-xl font-bold my-3">Password</div>
         <input type="password" id={styles.loginpassword} onChange={validatePassword} className="w-1/2 bg-custom-gray-1 text-lg text-center rounded-lg"></input>
-        <div className="flex flex-row items-center justify-center my-10">
+        <div className="flex flex-row items-center justify-center mt-10">
           <div className="rounded-xl text-center bg-custom-blue w-24 p-3 m-4 cursor-pointer hover:brightness-125 transition" onClick={() => {
             if (loading) return;
             setLoading(true);
@@ -120,7 +120,7 @@ export default function Login({ setUser }: LoginProps) {
           }}>Login</div>
         </div>
         {loading && <LoadIcon className="w-6 h-6 animate-spin" />}
-        {error && <div className="text-center text-red-500 font-black">{error}</div>}
+        {error && <div className="text-center text-custom-red font-black">{error}</div>}
       </div>
     </div>
   )
