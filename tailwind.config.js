@@ -8,6 +8,9 @@ const colors = {
   "custom-green": "#26CF5E",
   "custom-red": "#F24855",
   "custom-blue": "#357AE4",
+  "custom-gold": "#E5B25D",
+  "custom-silver": "#D7D7D7",
+  "custom-bronze":"#AD8A56",
 };
 
 module.exports = {

@@ -33,7 +33,7 @@ export default function Root({ stocks }) {
         name: "test",
       }*/} watchListData={watchListStocks.map(ticker => stocks[ticker])} curStock={curStock} curStockCallback={callback} setProfile={setProfileView}/>
       <MainContainer data={stocks[curStock]} />
-      <GlobalContainer />
+      <GlobalContainer curStockCallback={callback}/>
       {!user && <Login setUser={setUser} />}
       {profile && <Profile setUser={setUser} setProfile={setProfileView} />}
     </AppFrame>
