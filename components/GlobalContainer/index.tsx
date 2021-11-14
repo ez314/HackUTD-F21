@@ -5,14 +5,15 @@ import style from "./style.module.css";
 
 interface GlobalContainerProps {
   curStockCallback: any;
+  setSelected: any;
 }
 
-export default function GlobalContainer({curStockCallback}: GlobalContainerProps) {
+export default function GlobalContainer({curStockCallback, setSelected}: GlobalContainerProps) {
   return (
     <div id="globalcontainer" className="flex flex-col m-0 p-0 w-25p h-screen bg-custom-gray-0">
       <input id={style.watchlistsearch} type="text" placeholder="Search..." className="bg-custom-gray-2 w-48 h-9 m-3 p-4 border-2 rounded-3xl border-custom-gray-2" onKeyPress={(key) => {
         if (key.code === "Enter") {
-          setSelected((document.getElementById(style.watchlistsearch) as HTMLInputElement).value);
+          setSelected((document.getElementById(style.watchlistsearch) as HTMLInputElement).value.toUpperCase());
         }
       }}></input>
       <div className={`overflow-y-scroll overflow-x-hidden ${style.scrollable}`}>

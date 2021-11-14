@@ -62,7 +62,7 @@ export default function Root({ stocks }) {
           console.log(err);
         });
       }} />
-      <GlobalContainer setSelected={setCurStock} />
+      <GlobalContainer setSelected={setCurStock} curStockCallback={callback} />
       {!user && <Login setUser={setUser} />}
       {profile && <Profile setUser={setUser} setProfile={setProfileView} />}
     </AppFrame>
