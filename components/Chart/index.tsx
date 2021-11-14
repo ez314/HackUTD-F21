@@ -42,7 +42,7 @@ export default function Chart(props: ChartProps) {
       style={props.style}
       width={props.width || 400}
       height={props.height || 350}
-      data={convertToTimeSeries(data.price)}
+      data={convertToTimeSeries(data.prices)}
       margin={{top: 50}}
     >
       <defs>
