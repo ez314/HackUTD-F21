@@ -2,6 +2,7 @@ import AppFrame from '../components/AppFrame';
 import UserContainer from '../components/UserContainer';
 import MainContainer from '../components/MainContainer';
 import GlobalContainer from '../components/GlobalContainer';
+import React, {useState} from 'react';
 
 export async function getServerSideProps() {
   const {db} = require('../util/Firebase');
@@ -20,10 +21,15 @@ export async function getServerSideProps() {
 
 export default function Home({stocks}) {
   console.debug(stocks);
+
+  const [currentStock, setCurrentStock] = useState('TSLA');
+
+  const currentStockData = stocks[currentStock];
+
   return (
     <AppFrame>
       <UserContainer user="test" subscribedStocks={[]}/>
-      <MainContainer data={undefined}/>
+      <MainContainer data={currentStockData}/>
       <GlobalContainer/>
     </AppFrame>
   )
