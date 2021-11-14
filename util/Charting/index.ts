@@ -5,7 +5,7 @@ export const convertToTimeSeries = (priceArr) => {
   // initialize timestamp to market open
   timestamp.setHours(8, 30, 0, 0);
 
-  priceArr.forEach(price => {
+  priceArr && priceArr.forEach(price => {
     res.push({
       timestamp,
       price
