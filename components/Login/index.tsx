@@ -74,6 +74,7 @@ export default function Login({ setUser }: LoginProps) {
                 last_name: data.last_name,
                 password: data.password,
                 phone: data.phone,
+                watchlist: data.watchlist,
               };
               localStorage.setItem("user", JSON.stringify(userData));
               setUser(userData);
@@ -110,6 +111,7 @@ export default function Login({ setUser }: LoginProps) {
                 last_name: data.last_name,
                 password: data.password,
                 phone: data.phone,
+                watchlist: data.watchlist,
               };
               localStorage.setItem("user", JSON.stringify(userData));
               setUser(userData);

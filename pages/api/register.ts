@@ -14,7 +14,7 @@ export async function handleRegister(req: NextApiRequest, res: NextApiResponse) 
         last_name: "",
         password: data.password,
         phone: data.phone,
-        watchlist: [],
+        watchlist: ['TSLA'],
       };
       await db.doc(`account/${data.phone}`).create({
         ...newData
