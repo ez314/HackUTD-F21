@@ -7,17 +7,25 @@ function validatePhone() {
   const regex = /^\d{10}$/
   const e = document.getElementById(styles.loginphone) as HTMLInputElement;
   const phone = e.value;
+  let validated = false;
   let color = '#ff0000';
-  if (phone.match(regex)) color = '#00ff00';
+  if (phone.match(regex)) {
+    color = '#00ff00';
+    validated = true;
+  }
   if (phone === undefined || phone === '') color = '#ffffff';
   e.style.setProperty('--color', color);
 }
 function validatePassword() {
   const e = document.getElementById(styles.loginpassword) as HTMLInputElement;
   const password = e.value;
+  let validated = false;
   let color = '#ff0000';
-  if (password.length >= 8) color = '#00ff00'
-  if (password === undefined || password === '') color = '#ffffff'
+  if (password.length >= 8) {
+    color = '#00ff00';
+    validated = true;
+  }
+  if (password === undefined || password === '') color = '#ffffff';
   e.style.setProperty('--color', color);
 }
 
