@@ -1,6 +1,6 @@
 import styles from "./style.module.css";
 interface LoginProps {
-  
+  setUser
 }
 
 function validatePhone() {
@@ -21,7 +21,7 @@ function validatePassword() {
   e.style.setProperty('--color', color);
 }
 
-export default function Login({ }: LoginProps) {
+export default function Login({ setUser }: LoginProps) {
   return (
     <div id="login" className="absolute flex items-center justify-center w-full h-full bg-cool-0 z-10">
       <div id="loginactual" className="relative flex flex-col items-center w-1/3 h-3/5 p-3 bg-black rounded-xl text-white">
@@ -34,7 +34,7 @@ export default function Login({ }: LoginProps) {
           <div className="rounded-xl text-center bg-green-600 w-24 p-3 m-4 cursor-pointer hover:brightness-125 transition">Register</div>
           <div className="rounded-xl text-center bg-green-600 w-24 p-3 m-4 cursor-pointer hover:brightness-125 transition" onClick={() => {
             localStorage.setItem("user", JSON.stringify({ name: "NICK" }))
-            window.location.reload()
+            setUser({ name: "NICK" })
           }}>Login</div>
         </div>
       </div>
