@@ -1,3 +1,15 @@
+const colors = {
+  "custom-modal": "#000000cc",
+  "custom-gray-0": "#151515",
+  "custom-gray-1": "#222222",
+  "custom-gray-2": "#333333",
+  "custom-gray-3": "#4E4F4E",
+  "custom-gray-4": "#F5F5F5",
+  "custom-green": "#26CF5E",
+  "custom-red": "#F24855",
+  "custom-blue": "#357AE4",
+};
+
 module.exports = {
   mode: 'jit',
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
@@ -9,9 +21,11 @@ module.exports = {
         '70p': "70%",
       },
       backgroundColor: {
-        "cool-0": "#000000cc",
-        "cool-1": "#222222",
-      }
+        ...colors
+      },
+      textColor: {
+        ...colors
+      },
     },
   },
   variants: {
