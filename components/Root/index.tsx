@@ -9,6 +9,7 @@ import { getUser } from "../../lib/user";
 export default function Root({ stocks }) {
   const [user, setUser] = useState(undefined);
   const [curStock, setCurStock] = useState('TSLA');
+  const [watchListStocks, setWatchListStocks] = useState(['TSLA']);
 
   useEffect(() => {
     if (user) return;
@@ -20,7 +21,7 @@ export default function Root({ stocks }) {
         phone: "(469) 534-2142",
         password: "password",
         name: "test",
-      }*/} subscribedStocks={[]} />
+      }*/} watchListData={watchListStocks.map(ticker => stocks[ticker])} />
       <MainContainer data={stocks[curStock]} />
       <GlobalContainer />
       {!user && <Login setUser={setUser}/>}
