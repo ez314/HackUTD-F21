@@ -8,11 +8,11 @@ import Profile from "../Profile";
 import { getUser, UserData } from "../../lib/user";
 
 export default function Root({ stocks }) {
-  const stockList = ['TSLA', 'GOOG', 'AAPL', 'MSFT', 'UBER', 'PLTR', 'NVDA', 'LCID', 'HOOD', 'JNJ', 'INTC', 'GME'].sort();
+  const startStocks = ['GS', 'UBER', 'TSLA', 'NVDA'];
   const [user, setUser] = useState<UserData>(undefined);
   const [profile, setProfileView] = useState(false);
-  const [watchListStocks, setWatchListStocks] = useState(['TSLA']);  
-  const [curStock, setCurStock] = useState("TSLA");
+  const [watchListStocks, setWatchListStocks] = useState(startStocks);  
+  const [curStock, setCurStock] = useState(startStocks[0]);
 
   const callback = (tckr) => {
     setCurStock(tckr);
