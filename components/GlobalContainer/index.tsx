@@ -21,7 +21,7 @@ export default function GlobalContainer({curStockCallback, setSelected, stocks}:
   return (
     <div id="globalcontainer" className="flex flex-col m-0 p-0 w-20p h-screen bg-custom-gray-0">
       <input id={style.watchlistsearch} type="text" placeholder="Search..."
-             className="bg-custom-gray-2 w-48 h-9 m-3 p-4 border-2 rounded-3xl border-custom-gray-2"
+             className="bg-custom-gray-2 w-18p h-9 m-3 p-4 border-2 rounded-3xl border-custom-gray-2"
              onKeyPress={(key) => {
                if (key.code === "Enter") {
                  setSelected((document.getElementById(style.watchlistsearch) as HTMLInputElement).value.toUpperCase());
