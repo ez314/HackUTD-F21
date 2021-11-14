@@ -13,10 +13,16 @@ interface ChartProps {
   data: any;
 }
 
-const CustomToolTip = ({ active, payload, label }) => {
+interface CustomToolTipProps {
+  active?;
+  payload?;
+  label?;
+}
+
+const CustomToolTip = ({ active, payload, label }: CustomToolTipProps) => {
   if (active && payload && payload.length) {
     return (
-      <div className="custom-toolip bg-white bg-opacity-30 p-1 rounded-lg">
+      <div className="custom-toolip bg-custom-gray-4 bg-opacity-30 p-1 rounded-lg">
         <p>{label.toLocaleTimeString()}</p>
         <p>{'$' + payload[0].value}</p>
       </div>
@@ -47,7 +53,7 @@ export default function Chart({data}: ChartProps) {
       <XAxis dataKey="timestamp" type="category"/>
       <YAxis domain={['auto', 'auto']}/>
       <CartesianGrid strokeDasharray="3 3"/>
-      <Tooltip content={<CustomToolTip/>}/>
+      <Tooltip content={<CustomToolTip />}/>
       <Area
         type="monotone"
         dataKey="price"
