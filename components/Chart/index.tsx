@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import {Component, HTMLProps} from 'react';
 import {
   AreaChart,
   XAxis,
@@ -9,8 +9,10 @@ import {
 } from "recharts";
 import {convertToTimeSeries} from '../../util/Charting';
 
-interface ChartProps {
+interface ChartProps extends HTMLProps<HTMLElement> {
   data: any;
+  width?: number;
+  height?: number;
 }
 
 interface CustomToolTipProps {
@@ -32,11 +34,14 @@ const CustomToolTip = ({ active, payload, label }: CustomToolTipProps) => {
   return null;
 };
 
-export default function Chart({data}: ChartProps) {
+export default function Chart(props: ChartProps) {
+  const data = props.data;
   return (
     <AreaChart
-      width={400}
-      height={350}
+      className={props.className}
+      style={props.style}
+      width={props.width || 400}
+      height={props.height || 350}
       data={convertToTimeSeries(data.price)}
       margin={{top: 50}}
     >
