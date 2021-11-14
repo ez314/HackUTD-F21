@@ -7,6 +7,10 @@ module.exports = {
       width: {
         '15p': "15%",
         '70p': "70%",
+      },
+      backgroundColor: {
+        "cool-0": "#000000cc",
+        "cool-1": "#222222",
       }
     },
   },

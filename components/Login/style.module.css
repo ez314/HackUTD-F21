@@ -1,0 +1,8 @@
+#loginphone:focus, #loginpassword:focus {
+  outline: none;
+}
+#loginphone, #loginpassword {
+  --color: #ffffff;
+  box-shadow: 5px 5px 7px -3px var(--color);
+  transition: box-shadow 0.25s;
+}
