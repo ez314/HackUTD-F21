@@ -21,7 +21,7 @@ export default function Tweet({ photo, name, handle, content, likes, retweets, d
           <div className="text-xs">{handle}</div>
         </div>
       </div>
-      <div className="text-xs w-full m-3">{content}</div>
+      <div className="text-xs m-3">{content}</div>
       <div className="flex flex-row items-center w-full">
         <div className="flex flex-row items-center w-min mx-3">
           <LikeIcon className="w-4 h-4" />

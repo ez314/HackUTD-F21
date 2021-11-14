@@ -75,6 +75,7 @@ export default function Profile({ setUser, setProfile }: ProfileProps) {
                 phone: user.phone,
                 first_name: (document.getElementById(styles.profilefirst) as HTMLInputElement).value,
                 last_name: (document.getElementById(styles.profilelast) as HTMLInputElement).value,
+                watchlist: user.watchlist,
               }),
             }).then(async (result) => {
               if (result.status !== 200) {
@@ -89,6 +90,7 @@ export default function Profile({ setUser, setProfile }: ProfileProps) {
                 last_name: data.last_name,
                 password: user.password,
                 phone: user.phone,
+                watchlist: user.watchlist,
               };
               localStorage.setItem("user", JSON.stringify(userData));
               setUser(userData);

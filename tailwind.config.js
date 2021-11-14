@@ -32,6 +32,9 @@ module.exports = {
       textColor: {
         ...colors
       },
+      borderColor: {
+        ...colors
+      }
     },
   },
   variants: {

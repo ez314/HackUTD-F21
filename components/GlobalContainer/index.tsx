@@ -10,7 +10,11 @@ interface GlobalContainerProps {
 export default function GlobalContainer({curStockCallback}: GlobalContainerProps) {
   return (
     <div id="globalcontainer" className="flex flex-col m-0 p-0 w-25p h-screen bg-custom-gray-0">
-      <GlobalHeader />
+      <input id={style.watchlistsearch} type="text" placeholder="Search..." className="bg-custom-gray-2 w-48 h-9 m-3 p-4 border-2 rounded-3xl border-custom-gray-2" onKeyPress={(key) => {
+        if (key.code === "Enter") {
+          setSelected((document.getElementById(style.watchlistsearch) as HTMLInputElement).value);
+        }
+      }}></input>
       <div className={`overflow-y-scroll overflow-x-hidden ${style.scrollable}`}>
         <GlobalElem tckr={"TSLA"} name={"Tesla"} sentiment={1} idx={0} curStockCallback={curStockCallback}/>
         <GlobalElem tckr={"MSFT"} name={"Tesla"} sentiment={1} idx={1} curStockCallback={curStockCallback}/>

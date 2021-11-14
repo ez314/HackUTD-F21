@@ -1,3 +1,4 @@
+
 .scrollable::-webkit-scrollbar {
   width: 5px;
 }
@@ -7,4 +8,6 @@
 .scrollable::-webkit-scrollbar-thumb {
   background-color: #4E4F4E;
   border-radius: 20px;
+#watchlistsearch:focus {
+  outline: none;
 }
