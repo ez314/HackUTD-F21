@@ -17,15 +17,15 @@ export default function WatchlistItem({tckr, name, price, change, prices }: Watc
 
   return (
     <div className="p-6 m-0 min-w-full mx-auto bg-gray-1 text-custom-gray-4 flex items-center shadow-cool cursor-pointer">
-      <div className="flex-none text-left">
+      <div className="w-5/12 text-left">
         <div className="text-lg font-medium">{tckr}</div>
         <div className="text-sm">{name}</div>
       </div>
-      <div className="flex-1 mx-3">
+      <div className="w-4/12 mx-2">
         <WatchlistGraph change={change} prices={prices} tckr={tckr}/>
       </div>
       <div>
-        <p className="flex-none text-right mx-2">{price.toFixed(2)}</p>
+        <p className="flex-none text-right">{"$" + price.toFixed(2)}</p>
         {percIncr}
       </div>
     </div>

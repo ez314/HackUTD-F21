@@ -1,4 +1,4 @@
-import { Component } from 'react';
+  import { Component } from 'react';
 import WatchlistItem from '../WatchlistItem';
 
 interface GlobalContainerProps {
