@@ -24,11 +24,13 @@ def get_avatar(username):
     c.Store_object = True
     c.Hide_output = True
     twint.run.Lookup(c)
-    return twint.output.users_list[0].avatar
+    return twint.output.users_list[-1].avatar
 
 
 companies = "AXP AMGN AAPL BA CAT CSCO CVX GS HD HON IBM INTC JNJ KO JPM MCD MMM MRK MSFT NKE PG TRV UNH CRM VZ V WBA WMT DIS DOW TSLA AMC GME BBBY CRSR PLTR LCID AMD SPCE NOK BB UBER HOOD NVDA".split()
 #companies = "AAPL BA CSCO TSLA GS HD AMC IBM INTC JNJ KO JPM MCD MMM MRK MSFT NKE PG TRV UNH CRM VZ V WBA WMT DIS DOW GME BBBY CRSR PLTR LCID AMD SPCE NOK BB UBER HOOD NVDA".split()
+companies = "GOOG HAL".split()
+
 tuple_list = []
 
 startTime = time.time()
