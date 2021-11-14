@@ -16,6 +16,24 @@ interface MainContainerProps {
   updateWatchlist;
 }
 
+function abbreviateNumber(value) {
+  let newValue = value;
+  if (value >= 1000) {
+    let suffixes = ["", " K", " M", " B"," T"];
+    let suffixNum = Math.floor( (""+value).length/3 );
+    let shortValue = 0;
+    for (let precision = 2; precision >= 1; precision--) {
+      shortValue = parseFloat( (suffixNum != 0 ? (value / Math.pow(1000,suffixNum) ) : value).toPrecision(precision));
+      let dotLessShortValue = (shortValue + '').replace(/[^a-zA-Z 0-9]+/g,'');
+      if (dotLessShortValue.length <= 2) { break; }
+    }
+    if (shortValue % 1 != 0)
+      shortValue = parseFloat(shortValue.toFixed(1));
+    newValue = shortValue+suffixes[suffixNum];
+  }
+  return newValue;
+}
+
 export default function MainContainer({ data, tckr, user, updateWatchlist }: MainContainerProps) {
   const posTweets = data && data.pos_tweets && data.pos_tweets.map(tweet => (<Tweet extra="my-0" photo={tweet.profile_pic} name={tweet.name} handle={`@${tweet.username}`} 
     content={tweet.content || "This stock is really good!"} likes={tweet.likes_count} retweets={tweet.retweets_count} link={tweet.link} />))
@@ -50,16 +68,16 @@ export default function MainContainer({ data, tckr, user, updateWatchlist }: Mai
         </div>
         { data &&
         (<div className="grid grid-cols-2">
-          <h1 className="text-l"><span className="font-bold">Day Hi: </span>{data.day_high.toFixed(2)}</h1>
-          <h1 className="text-l"><span className="font-bold">Day Vol: </span>{data.day_vol}</h1>
-          <h1 className="text-l"><span className="font-bold">Day Lo: </span>{data.day_low.toFixed(2)}</h1>
-          <h1 className="text-l"><span className="font-bold">Dividend Rate: </span>{data.dividend_rate ? data.dividend_rate: "N/A"}</h1>
-          <h1 className="text-l"><span className="font-bold">Year Hi: </span>{data["52_wk_high"]}</h1>
+          <h1 className="text-l"><span className="font-bold">Day Hi: </span>{abbreviateNumber(data.day_high.toFixed(2))}</h1>
+          <h1 className="text-l"><span className="font-bold">Day Vol: </span>{abbreviateNumber(data.day_vol)}</h1>
+          <h1 className="text-l"><span className="font-bold">Day Lo: </span>{abbreviateNumber(data.day_low.toFixed(2))}</h1>
+          <h1 className="text-l"><span className="font-bold">Dividend Rate: </span>{abbreviateNumber(data.dividend_rate ? data.dividend_rate: "N/A")}</h1>
+          <h1 className="text-l"><span className="font-bold">Year Hi: </span>{abbreviateNumber(data["52_wk_high"])}</h1>
           <h1 className="text-l"><span className="font-bold">Sentiment Ratio: </span>{"+"+data.pos_tweet_count+"/-"+data.neg_tweet_count}</h1>
-          <h1 className="text-l"><span className="font-bold">Year Lo: </span>{data["52_wk_low"]}</h1>
-          <h1 className="text-l"><span className="font-bold">Market Cap: </span>{data.market_cap}</h1>
-          <h1 className="text-l"><span className="font-bold">Short Ratio: </span>{data.short_ratio}</h1>
-          <h1 className="text-l"><span className="font-bold">Sector: </span>{data.sector}</h1>
+          <h1 className="text-l"><span className="font-bold">Year Lo: </span>{abbreviateNumber(data["52_wk_low"])}</h1>
+          <h1 className="text-l"><span className="font-bold">Market Cap: </span>{abbreviateNumber(data.market_cap)}</h1>
+          <h1 className="text-l"><span className="font-bold">Short Ratio: </span>{abbreviateNumber(data.short_ratio)}</h1>
+          <h1 className="text-l"><span className="font-bold">Sector: </span>{abbreviateNumber(data.sector)}</h1>
           
 
         </div>)
