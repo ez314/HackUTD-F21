@@ -10,8 +10,8 @@ import { getUser, UserData } from "../../lib/user";
 export default function Root({ stocks }) {
   const [user, setUser] = useState<UserData>(undefined);
   const [profile, setProfileView] = useState(false);
-  const [watchListStocks, setWatchListStocks] = useState(['TSLA']);  
-  const [curStock, setCurStock] = useState("TSLA");
+  const [watchListStocks, setWatchListStocks] = useState(startStocks);  
+  const [curStock, setCurStock] = useState(startStocks[0]);
 
   const callback = (tckr) => {
     setCurStock(tckr);
