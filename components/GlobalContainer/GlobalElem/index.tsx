@@ -21,10 +21,10 @@ export default function GlobalElem({tckr, name, sentiment, idx, curStockCallback
     return (
         <div className="px-6 py-4 m-0 min-w-full mx-auto bg-custom-gray-1 flex 
         items-center shadow-cool cursor-pointer hover:bg-custom-gray-2 transition" onClick={() => curStockCallback(tckr)}>
-            <div className={"w-3/6 px-2 rounded-md  text-center mr-4 font-bold " + color}>
+            <div className={"w-1/6 px-2 rounded-md  text-center mr-4 font-bold " + color}>
                 {idx+1}
             </div>
-            <div className="w-3/6 flex-none text-left">
+            <div className="w-4/6 flex-none text-left">
                 <div className="text-lg font-medium">{tckr}</div>
                 <div className="text-sm max-w-1 truncate">{name}</div>
             </div>

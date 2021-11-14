@@ -45,7 +45,9 @@ export default function MainContainer({ data, tckr, user, updateWatchlist }: Mai
           
           <div className="text-2xl font-black ml-10">{tckr} | {data.name}</div>
         </div>
+        <div className="mb-10">
         <Chart data={data} width={700}></Chart>
+        </div>
         { data &&
         (<div className="grid grid-cols-2">
           <h1 className="text-l"><span className="font-bold">Day Hi: </span>{data.day_high.toFixed(2)}</h1>

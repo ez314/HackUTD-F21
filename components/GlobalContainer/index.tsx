@@ -19,7 +19,7 @@ export default function GlobalContainer({curStockCallback, setSelected, stocks}:
   }).splice(9);
 
   return (
-    <div id="globalcontainer" className="flex flex-col m-0 p-0 w-25p h-screen bg-custom-gray-0">
+    <div id="globalcontainer" className="flex flex-col m-0 p-0 w-20p h-screen bg-custom-gray-0">
       <input id={style.watchlistsearch} type="text" placeholder="Search..."
              className="bg-custom-gray-2 w-48 h-9 m-3 p-4 border-2 rounded-3xl border-custom-gray-2"
              onKeyPress={(key) => {
