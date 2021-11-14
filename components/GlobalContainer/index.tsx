@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import {Component} from 'react';
 import GlobalHeader from './GlobalHeader';
 import GlobalElem from './GlobalElem';
 import style from "./style.module.css";
@@ -6,26 +6,34 @@ import style from "./style.module.css";
 interface GlobalContainerProps {
   curStockCallback: any;
   setSelected: any;
+  stocks: any
 }
 
-export default function GlobalContainer({curStockCallback, setSelected}: GlobalContainerProps) {
+export default function GlobalContainer({curStockCallback, setSelected, stocks}: GlobalContainerProps) {
+  let stocksCopy = Object.values(stocks);
+  stocksCopy.sort((a: any, b: any) => {
+    if (a.pos_tweet_count + a.neg_tweet_count == b.pos_tweet_count + b.neg_tweet_count) {
+      return Math.abs(b.pos_tweet_count - b.neg_tweet_count) / (b.pos_tweet_count + b.neg_tweet_count) - Math.abs(a.pos_tweet_count - a.neg_tweet_count) / (a.pos_tweet_count + a.neg_tweet_count);
+    }
+    return (b.pos_tweet_count + b.neg_tweet_count) - (a.pos_tweet_count + a.neg_tweet_count);
+  }).splice(9);
+
   return (
     <div id="globalcontainer" className="flex flex-col m-0 p-0 w-25p h-screen bg-custom-gray-0">
-      <input id={style.watchlistsearch} type="text" placeholder="Search..." className="bg-custom-gray-2 w-48 h-9 m-3 p-4 border-2 rounded-3xl border-custom-gray-2" onKeyPress={(key) => {
-        if (key.code === "Enter") {
-          setSelected((document.getElementById(style.watchlistsearch) as HTMLInputElement).value.toUpperCase());
-        }
-      }}></input>
+      <input id={style.watchlistsearch} type="text" placeholder="Search..."
+             className="bg-custom-gray-2 w-48 h-9 m-3 p-4 border-2 rounded-3xl border-custom-gray-2"
+             onKeyPress={(key) => {
+               if (key.code === "Enter") {
+                 setSelected((document.getElementById(style.watchlistsearch) as HTMLInputElement).value.toUpperCase());
+               }
+             }}></input>
       <div className={`overflow-y-scroll overflow-x-hidden ${style.scrollable}`}>
-        <GlobalElem tckr={"TSLA"} name={"Tesla"} sentiment={1} idx={0} curStockCallback={curStockCallback}/>
-        <GlobalElem tckr={"MSFT"} name={"Tesla"} sentiment={1} idx={1} curStockCallback={curStockCallback}/>
-        <GlobalElem tckr={"UBER"} name={"Tesla"} sentiment={1} idx={2} curStockCallback={curStockCallback}/>
-        <GlobalElem tckr={"JNJ"} name={"Tesla"} sentiment={1} idx={3} curStockCallback={curStockCallback}/>
-        <GlobalElem tckr={"NVDA"} name={"Tesla"} sentiment={1} idx={4} curStockCallback={curStockCallback}/>
-        <GlobalElem tckr={"INTC"} name={"Tesla"} sentiment={1} idx={5} curStockCallback={curStockCallback}/>
-        <GlobalElem tckr={"LCID"} name={"Tesla"} sentiment={1} idx={6} curStockCallback={curStockCallback}/>
-        <GlobalElem tckr={"PLTR"} name={"Tesla"} sentiment={1} idx={7} curStockCallback={curStockCallback}/>
-        <GlobalElem tckr={"AAPL"} name={"Tesla"} sentiment={1} idx={8} curStockCallback={curStockCallback}/>
+        {
+          stocksCopy && stocksCopy.map((stock, i) => <GlobalElem tckr={stock.ticker} name={stock.name}
+                                                                 sentiment={stock.pos_tweet_count - stock.neg_tweet_count}
+                                                                 idx={i}
+                                                                 curStockCallback={curStockCallback}/>)
+        }
       </div>
     </div>
   )
