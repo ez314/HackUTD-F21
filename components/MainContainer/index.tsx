@@ -1,10 +1,11 @@
-import {Component} from 'react';
-import Stock, {StockData} from '../Stock';
+
+import { Component } from 'react';
+import WatchlistItem from '../WatchlistItem';
 import Tweet from '../Tweet';
 import Chart from '../Chart';
 
 interface MainContainerProps {
-  data: StockData;
+  data: null;
 }
 
 export default function MainContainer({data}: MainContainerProps) {
