@@ -13,7 +13,7 @@ interface TweetProps {
 }
 export default function Tweet({ photo, name, handle, content, likes, retweets, date }: TweetProps) {
   return (
-    <div className={`flex flex-col w-64 m-auto rounded-xl bg-custom-gray-2 text-custom-gray-4 p-2 ${style.tweet}`}>
+    <div className={`flex flex-col w-64 m-auto rounded-xl bg-custom-gray-2 text-custom-gray-4 p-2 cursor-pointer hover:scale-110 transition ${style.tweet}`}>
       <div className="flex flex-row items-center justify-start w-full">
         <img src={photo} className="w-10 h-10 rounded-full mx-3" />
         <div className="flex flex-col text-sm">

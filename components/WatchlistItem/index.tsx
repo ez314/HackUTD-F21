@@ -16,7 +16,7 @@ export default function WatchlistItem({tckr, name, price, change, prices }: Watc
     (<p className="rounded-lg bg-custom-red px-2 text-custom-gray-4">{change.toFixed(2)}%</p>);
 
   return (
-    <div className="p-6 m-0 min-w-full mx-auto bg-gray-1 text-custom-gray-4 flex items-center shadow-cool cursor-pointer">
+    <div className="p-6 m-0 min-w-full mx-auto bg-custom-gray-1 text-custom-gray-4 flex items-center shadow-cool cursor-pointer hover:bg-custom-gray-2 transition">
       <div className="flex-none text-left">
         <div className="text-lg font-medium">{tckr}</div>
         <div className="text-sm">{name}</div>
