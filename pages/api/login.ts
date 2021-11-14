@@ -7,6 +7,7 @@ export async function handleLogin(req: NextApiRequest, res: NextApiResponse) {
   try {
     const doc = await db.doc(`account/${data.phone}`).get();
     if (doc.exists) {
+      if (data.password !== doc.data().password) return res.status(401).json({});
       return res.status(200).json({ data: doc.data() });
     } else {
       return res.status(401).json({});

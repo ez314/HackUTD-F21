@@ -6,13 +6,13 @@ import {
 import {convertToTimeSeries} from "../../../util/Charting";
 
 interface WatchlistGraphProps {
-  change: number,
-  prices: number[],
-  tckr: string
+  change: number;
+  prices: number[];
+  tckr: string;
 }
 
 export default function WatchlistGraph({tckr, change, prices}: WatchlistGraphProps) {
-  const color = change > 0.00 ? "#34D399" : "#EF4444";
+  const color = change > 0.00 ? "#26CF5E" : "#F24855";
 
   return (
     <AreaChart

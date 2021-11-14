@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import {Component, HTMLProps} from 'react';
 import {
   AreaChart,
   XAxis,
@@ -9,14 +9,22 @@ import {
 } from "recharts";
 import {convertToTimeSeries} from '../../util/Charting';
 
-interface ChartProps {
+interface ChartProps extends HTMLProps<HTMLElement> {
   data: any;
+  width?: number;
+  height?: number;
 }
 
-const CustomToolTip = ({ active, payload, label }) => {
+interface CustomToolTipProps {
+  active?;
+  payload?;
+  label?;
+}
+
+const CustomToolTip = ({ active, payload, label }: CustomToolTipProps) => {
   if (active && payload && payload.length) {
     return (
-      <div className="custom-toolip bg-white bg-opacity-30 p-1 rounded-lg">
+      <div className="custom-toolip bg-custom-gray-4 bg-opacity-30 p-1 rounded-lg">
         <p>{label.toLocaleTimeString()}</p>
         <p>{'$' + payload[0].value}</p>
       </div>
@@ -26,11 +34,14 @@ const CustomToolTip = ({ active, payload, label }) => {
   return null;
 };
 
-export default function Chart({data}: ChartProps) {
+export default function Chart(props: ChartProps) {
+  const data = props.data;
   return (
     <AreaChart
-      width={400}
-      height={350}
+      className={props.className}
+      style={props.style}
+      width={props.width || 400}
+      height={props.height || 350}
       data={convertToTimeSeries(data.price)}
       margin={{top: 50}}
     >
@@ -47,7 +58,7 @@ export default function Chart({data}: ChartProps) {
       <XAxis dataKey="timestamp" type="category"/>
       <YAxis domain={['auto', 'auto']}/>
       <CartesianGrid strokeDasharray="3 3"/>
-      <Tooltip content={<CustomToolTip/>}/>
+      <Tooltip content={<CustomToolTip />}/>
       <Area
         type="monotone"
         dataKey="price"
