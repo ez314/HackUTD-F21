@@ -28,7 +28,7 @@ const CustomToolTip = ({ active, payload, label }: CustomToolTipProps) => {
     return (
       <div className="custom-toolip bg-custom-gray-4 bg-opacity-30 p-1 rounded-lg">
         <p>{label.toLocaleTimeString()}</p>
-        <p>{'$' + payload[0].value}</p>
+        <p>{'$' + payload[0].value.toFixed(2)}</p>
       </div>
     );
   }
