@@ -45,7 +45,7 @@ export default function Login({ setUser }: LoginProps) {
         <input id={styles.loginphone} onChange={validatePhone} className="w-1/2 bg-custom-gray-1 text-lg text-center rounded-lg"></input>
         <div className="text-xl font-bold my-3">Password</div>
         <input type="password" id={styles.loginpassword} onChange={validatePassword} className="w-1/2 bg-custom-gray-1 text-lg text-center rounded-lg"></input>
-        <div className="flex flex-row items-center justify-center my-10">
+        <div className="flex flex-row items-center justify-center mt-10">
           <div className="rounded-xl text-center bg-custom-blue w-24 p-3 m-4 cursor-pointer hover:brightness-125 transition" onClick={() => {
             if (loading) return;
             setLoading(true);
