@@ -3,6 +3,7 @@ export interface UserData {
   password: string;
   first_name: string;
   last_name: string;
+  watchlist: string[];
 }
 
 export function getUser() {

@@ -11,8 +11,8 @@ export default function Root({ stocks }) {
   const stockList = ['TSLA', 'GOOG', 'AAPL', 'MSFT', 'UBER', 'PLTR', 'NVDA', 'LCID', 'HOOD', 'JNJ', 'INTC', 'GME'].sort();
   const [user, setUser] = useState<UserData>(undefined);
   const [profile, setProfileView] = useState(false);
-  const [watchListStocks, setWatchListStocks] = useState(stockList);  
-  const [curStock, setCurStock] = useState(stockList[0]);
+  const [watchListStocks, setWatchListStocks] = useState(['TSLA']);  
+  const [curStock, setCurStock] = useState("TSLA");
 
   const callback = (tckr) => {
     setCurStock(tckr);
@@ -20,6 +20,7 @@ export default function Root({ stocks }) {
 
   useEffect(() => {
     if (user) {
+      if (watchListStocks.length !== user.watchlist.length) setWatchListStocks(user.watchlist);
       if (!profile && (!user.first_name || !user.last_name)) setProfileView(true);
       return;
     }
@@ -32,8 +33,36 @@ export default function Root({ stocks }) {
         password: "password",
         name: "test",
       }*/} watchListData={watchListStocks.map(ticker => stocks[ticker])} curStock={curStock} curStockCallback={callback} setProfile={setProfileView}/>
-      <MainContainer data={stocks[curStock]} />
-      <GlobalContainer />
+      <MainContainer data={stocks[curStock]} tckr={curStock} user={user} updateWatchlist={(user: UserData, tckr) => {
+        fetch("/api/profile", {
+          mode: 'cors',
+          method: 'POST',
+          body: JSON.stringify({
+            phone: user.phone,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            watchlist: user.watchlist,
+          }),
+        }).then(async (result) => {
+          if (result.status !== 200) {
+            return console.log(`Profile update error ${result.status}...`);
+          }
+          const data = (await result.json()).data;
+          const userData: UserData = {
+            first_name: data.first_name,
+            last_name: data.last_name,
+            password: user.password,
+            phone: user.phone,
+            watchlist: user.watchlist,
+          };
+          localStorage.setItem("user", JSON.stringify(userData));
+          setUser(undefined);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      }} />
+      <GlobalContainer setSelected={setCurStock} />
       {!user && <Login setUser={setUser} />}
       {profile && <Profile setUser={setUser} setProfile={setProfileView} />}
     </AppFrame>
