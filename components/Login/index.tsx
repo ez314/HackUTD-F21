@@ -46,12 +46,47 @@ export default function Login({ setUser }: LoginProps) {
         <div className="text-xl font-bold my-3">Password</div>
         <input type="password" id={styles.loginpassword} onChange={validatePassword} className="w-1/2 bg-custom-gray-1 text-lg text-center rounded-lg"></input>
         <div className="flex flex-row items-center justify-center my-10">
-          <div className="rounded-xl text-center bg-custom-blue w-24 p-3 m-4 cursor-pointer hover:brightness-125 transition">Register</div>
           <div className="rounded-xl text-center bg-custom-blue w-24 p-3 m-4 cursor-pointer hover:brightness-125 transition" onClick={() => {
             if (loading) return;
             setLoading(true);
             if (!validatePhone() || !validatePassword()) {
-              setError("Invalid Phone or Password...");
+              setError("Invalid Phone Number or Password...");
+              setLoading(false);
+              return;
+            }
+            fetch("/api/register", {
+              mode: 'cors',
+              method: 'POST',
+              body: JSON.stringify({
+                phone: (document.getElementById(styles.loginphone) as HTMLInputElement).value,
+                password: (document.getElementById(styles.loginpassword) as HTMLInputElement).value,
+              }),
+            }).then(async (result) => {
+              if (result.status !== 200) {
+                setError("User already registered...");
+                setLoading(false);
+                return console.log(`Registration error ${result.status}...`);
+              }
+              const data = (await result.json()).data;
+              setLoading(false);
+              const userData: UserData = {
+                first_name: data.first_name,
+                last_name: data.last_name,
+                password: data.password,
+                phone: data.phone,
+              };
+              localStorage.setItem("user", JSON.stringify(userData));
+              setUser(userData);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          }}>Register</div>
+          <div className="rounded-xl text-center bg-custom-blue w-24 p-3 m-4 cursor-pointer hover:brightness-125 transition" onClick={() => {
+            if (loading) return;
+            setLoading(true);
+            if (!validatePhone() || !validatePassword()) {
+              setError("Invalid Phone Number or Password...");
               setLoading(false);
               return;
             }
@@ -64,6 +99,7 @@ export default function Login({ setUser }: LoginProps) {
               }),
             }).then(async (result) => {
               if (result.status !== 200) {
+                setError("Invalid Phone Number or Password...");
                 setLoading(false);
                 return console.log(`Login error ${result.status}...`);
               }
