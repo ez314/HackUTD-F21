@@ -1,10 +1,10 @@
-import Stock, { StockData } from '../Stock';
+import WatchlistItem from '../WatchlistItem';
 import { UserData } from "../../lib/user";
 import UserInfoBar from './UserInfoBar';
 
 interface UserContainerProps {
   user: UserData;
-  subscribedStocks: StockData[];
+  subscribedStocks: [];
 }
 
 export default function UserContainer({ user, subscribedStocks }: UserContainerProps) {
@@ -14,8 +14,18 @@ export default function UserContainer({ user, subscribedStocks }: UserContainerP
   return (
     <div id="usercontainer" className="flex flex-col m-0 p-0 w-15p h-screen bg-custom-gray-0">
       <UserInfoBar user={user} />
-      <div>{user && user.name}</div>
-      {stockDisplay}
+      <div className="overflow-y-scroll overflow-x-hidden">
+        <WatchlistItem tckr={"AAPL"} name={"Apple, Inc"} price={35.66} change={2.19} prices={[1,3,2,4,5,1]}/>
+        <WatchlistItem tckr={"AAPL"} name={"Apple, Inc"} price={35.66} change={2.19} prices={[1,3,2,4,5,1]}/>
+        <WatchlistItem tckr={"AAPL"} name={"Apple, Inc"} price={35.66} change={2.19} prices={[1,3,2,4,5,1]}/>
+        <WatchlistItem tckr={"AAPL"} name={"Apple, Inc"} price={35.66} change={2.19} prices={[1,3,2,4,5,1]}/>
+        <WatchlistItem tckr={"AAPL"} name={"Apple, Inc"} price={35.66} change={2.19} prices={[1,3,2,4,5,1]}/>
+        <WatchlistItem tckr={"AAPL"} name={"Apple, Inc"} price={35.66} change={2.19} prices={[1,3,2,4,5,1]}/>
+        <WatchlistItem tckr={"AAPL"} name={"Apple, Inc"} price={35.66} change={2.19} prices={[1,3,2,4,5,1]}/>
+        <WatchlistItem tckr={"AAPL"} name={"Apple, Inc"} price={35.66} change={2.19} prices={[1,3,2,4,5,1]}/>
+        <WatchlistItem tckr={"AAPL"} name={"Apple, Inc"} price={35.66} change={2.19} prices={[1,3,2,4,5,1]}/>
+        <WatchlistItem tckr={"AAPL"} name={"Apple, Inc"} price={35.66} change={2.19} prices={[1,3,2,4,5,1]}/>
+      </div>
     </div>
   )
 }

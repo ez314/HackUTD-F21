@@ -1,7 +1,8 @@
 export interface UserData {
   phone: string;
   password: string;
-  name: string;
+  first_name: string;
+  last_name: string;
 }
 
 export function getUser() {

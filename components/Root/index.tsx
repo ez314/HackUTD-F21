@@ -6,12 +6,10 @@ import GlobalContainer from '../GlobalContainer';
 import Login from '../Login';
 import { getUser } from "../../lib/user";
 
-export interface RootProps {
-
-}
-
-export default function Root({ }: RootProps) {
+export default function Root({ stocks }) {
   const [user, setUser] = useState(undefined);
+  const [curStock, setCurStock] = useState('TSLA');
+
   useEffect(() => {
     if (user) return;
     setUser(getUser());
@@ -23,7 +21,7 @@ export default function Root({ }: RootProps) {
         password: "password",
         name: "test",
       }*/} subscribedStocks={[]} />
-      <MainContainer data={undefined} />
+      <MainContainer data={stocks[curStock]} />
       <GlobalContainer />
       {!user && <Login setUser={setUser}/>}
     </AppFrame>

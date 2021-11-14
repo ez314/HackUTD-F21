@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Stock, { StockData } from '../Stock';
+import WatchlistItem from '../WatchlistItem';
 
 interface GlobalContainerProps {
 }

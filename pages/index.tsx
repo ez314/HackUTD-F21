@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import Root from '../components/Root';
 export default function Index({ stocks }) {
-  console.log(stocks);
   return (
-    <Root />
+    <Root stocks={stocks}/>
   )
 }
 export async function getServerSideProps() {
