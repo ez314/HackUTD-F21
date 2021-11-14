@@ -8,10 +8,15 @@ import Profile from "../Profile";
 import { getUser, UserData } from "../../lib/user";
 
 export default function Root({ stocks }) {
+  const stockList = ['TSLA', 'GOOG', 'AAPL', 'MSFT', 'UBER', 'PLTR', 'NVDA', 'LCID', 'HOOD', 'JNJ', 'INTC', 'GME'].sort();
   const [user, setUser] = useState<UserData>(undefined);
   const [profile, setProfileView] = useState(false);
-  const [curStock, setCurStock] = useState('TSLA');
-  const [watchListStocks, setWatchListStocks] = useState(['TSLA']);
+  const [watchListStocks, setWatchListStocks] = useState(stockList);  
+  const [curStock, setCurStock] = useState(stockList[0]);
+
+  const callback = (tckr) => {
+    setCurStock(tckr);
+  }
 
   useEffect(() => {
     if (user) {
@@ -26,7 +31,7 @@ export default function Root({ stocks }) {
         phone: "(469) 534-2142",
         password: "password",
         name: "test",
-      }*/} setProfile={setProfileView} watchListData={watchListStocks.map(ticker => stocks[ticker])} />
+      }*/} watchListData={watchListStocks.map(ticker => stocks[ticker])} curStock={curStock} curStockCallback={callback} setProfile={setProfileView}/>
       <MainContainer data={stocks[curStock]} />
       <GlobalContainer />
       {!user && <Login setUser={setUser} />}
