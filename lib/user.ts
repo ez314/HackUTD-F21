@@ -5,7 +5,7 @@ export interface UserData {
 }
 
 export function getUser() {
-  let user = localStorage.getItem("login");
+  let user = localStorage.getItem("user");
   if (user) return JSON.parse(user) as UserData;
   return undefined;
 }

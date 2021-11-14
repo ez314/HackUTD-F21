@@ -32,7 +32,10 @@ export default function Login({ }: LoginProps) {
         <input type="password" id={styles.loginpassword} onChange={validatePassword} className="w-1/2 bg-cool-1 text-lg text-center rounded-lg"></input>
         <div className="flex flex-row items-center justify-center m-auto">
           <div className="rounded-xl text-center bg-green-600 w-24 p-3 m-4 cursor-pointer hover:brightness-125 transition">Register</div>
-          <div className="rounded-xl text-center bg-green-600 w-24 p-3 m-4 cursor-pointer hover:brightness-125 transition">Login</div>
+          <div className="rounded-xl text-center bg-green-600 w-24 p-3 m-4 cursor-pointer hover:brightness-125 transition" onClick={() => {
+            localStorage.setItem("user", JSON.stringify({ name: "NICK" }))
+            window.location.reload()
+          }}>Login</div>
         </div>
       </div>
     </div>

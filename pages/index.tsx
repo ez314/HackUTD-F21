@@ -11,7 +11,7 @@ export default function Home({ stocks }) {
     if (user) return;
     setUser(getUser());
   })
-   console.log(stocks);
+  console.log(stocks);
   return (
     <AppFrame>
       <UserContainer user={user/*{
