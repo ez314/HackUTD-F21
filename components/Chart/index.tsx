@@ -38,6 +38,10 @@ const CustomToolTip = ({ active, payload, label }: CustomToolTipProps) => {
 
 export default function Chart(props: ChartProps) {
   const data = props.data;
+
+  let marketOpen = new Date().setHours(8, 30, 0, 0);
+  let marketClose = new Date().setHours(16, 0, 0, 0);
+
   return (
     <AreaChart
       className={props.className}
@@ -57,7 +61,7 @@ export default function Chart(props: ChartProps) {
           <stop offset="95%" stopColor={"#357ae4"} stopOpacity={0}/>
         </linearGradient>
       </defs>
-      <XAxis dataKey="timestamp" scale="time" type="number" domain={[1636900200000, 1636923600000]} hide={true}/>
+      <XAxis dataKey="timestamp" scale="time" type="number" domain={[marketOpen, marketClose]} hide={true}/>
       <YAxis domain={['auto', 'auto']} />
       <CartesianGrid strokeDasharray="3 3"/>
       <Tooltip content={<CustomToolTip />}/>
