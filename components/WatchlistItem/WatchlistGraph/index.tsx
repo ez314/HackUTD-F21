@@ -39,6 +39,7 @@ export default function WatchlistGraph({tckr, change, prices}: WatchlistGraphPro
         stroke={color}
         fillOpacity={1}
         fill={`url(#gradient-${tckr})`}
+        isAnimationActive={false}
       />
     </AreaChart>
   );
